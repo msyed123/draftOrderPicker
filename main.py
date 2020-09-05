@@ -5,17 +5,11 @@ import os
 import random
 
 from flask import Flask, render_template
-from flask_frozen import Freezer
-from flask_flatpages import FlatPages
 
 names = ["Dave", "Ethan", "Evan", "Juan", "Kyle", "Malcolm", "Mamoon", 
         "Matt", "Moses", "Sam"]
 picks = {}
-
 app = Flask(__name__)
-app.config.from_pyfile('settings.py')
-pages = FlatPages(app)
-freezer = Freezer(app)
 
 def picker():
     def spin():
@@ -44,3 +38,6 @@ def runIt():
     sortedPicks = sorted(picks.items(), key=lambda x: x[1])
     return render_template('list.html', picks=sortedPicks)
 
+if __name__ == '__main__':
+    # Threaded option to enable multiple instances for multiple user access support
+    app.run(threaded=True, port=5000)

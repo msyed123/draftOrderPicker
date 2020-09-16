@@ -2,8 +2,8 @@ import os
 import random
 
 from flask import Flask, render_template
+from app import app, pages
 
-app = Flask(__name__)
 names = ["Dave", "Ethan", "Evan", "Juan", "Kyle", "Malcolm", "Mamoon", 
         "Matt", "Moses", "Sam"]
 picks = {}
@@ -34,5 +34,3 @@ def runIt():
     picks = picker()
     sortedPicks = sorted(picks.items(), key=lambda x: x[1])
     return render_template('list.html', picks=sortedPicks)
-    
-app.run(host='localhost', port='8080')

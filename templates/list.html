@@ -3,7 +3,7 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
-<title>AIB DRAFT 2020</title>
+<title>AIB DRAFT 2021</title>
 <link rel="stylesheet" href="https://unpkg.com/purecss@2.0.3/build/pure-min.css"
     integrity="sha384-cg6SkqEOCV1NbJoCu11+bm0NvBRc8IYLRGXkmNrqUBfTjmMYwNKPWBTIKyw9mHNJ" crossorigin="anonymous">
 
@@ -32,11 +32,20 @@
 <div class="pure-g">
     <div class="pure-u-1">
         <center>
-            <h1>AIB 2020</h1>
+            <h1>AIB 2021</h1>
         </center>
     </div>
 </div>
 
+{% if showButton %}
+<div class="l-box">
+    <center> 
+        <a class="pure-button pure-button-primary" href="draft">Show the Pick</a>
+    </center>
+</div>
+{% endif %}
+
+{% if not showButton %}
 <div class="pure-g">
     <div class="pure-u-1">
         <center>
@@ -45,6 +54,7 @@
 
     </div>
 </div>
+{% endif %}
 
 <div class="pure-g">
     <div class="pure-u-1">
@@ -65,14 +75,6 @@
                     {% endfor %}
                 </tbody>
             </table>
-        </center>
-    </div>
-</div>
-
-<div class="pure-g">
-    <div class="pure-u-1">
-        <center>
-            <h3>Screw you Malc.</h3>
         </center>
     </div>
 </div>

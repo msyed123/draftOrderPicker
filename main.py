@@ -6,6 +6,12 @@ import random
 
 from flask import Flask, render_template
 
+sortedPicks = []
+unsortedPicks = []
+calculated = False
+counter = 0
+finished = True
+
 names = ["Dave", "Ethan", "Evan", "Juan", "Kyle", "Malcolm", "Mamoon", 
         "Matt", "Moses", "Sam"]
 picks = {}
@@ -32,11 +38,23 @@ def doIt():
     return render_template('button.html')
 
 
-@app.route('/draft')
 def runIt():
-    picks = picker()
+    global sortedPicks, unsortedPicks, counter, finished
+    unsortedPicks = picker()
     sortedPicks = sorted(picks.items(), key=lambda x: x[1])
-    return render_template('list.html', picks=sortedPicks)
+    counter = 0
+    finished = True
+
+@app.route('/draft')
+def addOne():
+    global sortedPicks, counter, calculated, finished
+    if calculated is False:
+        runIt()
+        calculated = True
+    counter += 1
+    if counter is len(names):
+        finished = False
+    return render_template('list.html', picks=sortedPicks[-counter:], showButton=finished)
 
 if __name__ == '__main__':
     # Threaded option to enable multiple instances for multiple user access support
